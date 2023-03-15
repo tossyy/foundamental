@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'toC.apps.TocConfig',  # toC用
+    'booking.apps.BookingConfig',
 ]
 
 MIDDLEWARE = [
