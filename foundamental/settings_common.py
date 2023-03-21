@@ -28,8 +28,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # ダッシュボード
+    'dashboard.apps.DashboardConfig',
+
+    # 予約システム
     'booking.apps.BookingConfig',
-    'accounts.apps.AccountsConfig',
+
+    # 認証システム
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
 ]
 
 MIDDLEWARE = [
@@ -47,7 +55,9 @@ ROOT_URLCONF = 'foundamental.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,4 +129,39 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-AUTH_USER_MODEL = 'accounts.Counselor'
+# 認証に使うモデルを指定
+AUTH_USER_MODEL = 'member.CustomUser'
+
+# signupformからの情報をcustomusermodelに保存するためのアダプタを指定
+ACCOUNT_ADAPTER = 'member.adapter.AccountAdapter'
+
+# django-allauthで利用するdjango.contrib.sitesを使うためにサイト識別用IDを設定
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    # 一般ユーザー用(メールアドレス認証)
+    'allauth.account.auth_backends.AuthenticationBackend',
+    # 管理サイト用(ユーザー名認証)
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# メールアドレス認証に変更する設定
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USERNAME_REQUIRED = False
+
+# サインアップにメールアドレス確認を挟まないよう設定
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_EMAIL_REQUIRED = True
+
+# ログイン/ログアウト後の遷移先を設定
+LOGIN_REDIRECT_URL = 'dashboard:index'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
+
+# ログアウトリンクのクリック一発でログアウトする設定
+ACCOUNT_LOGOUT_ON_GET = True
+
+# django-allauthが送信するメールの件名に自動付与される接頭辞をブランクにする設定
+ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
+
+# デフォルトのメール送信元を設定
+DEFAULT_FROM_EMAIL = os.environ.get('FROM_EMAIL')
