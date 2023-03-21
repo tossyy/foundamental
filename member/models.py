@@ -83,6 +83,8 @@ class UserDetailEntrepreneur(models.Model):
                                 related_name='detail_entrepreneur',
                                 on_delete=models.CASCADE)
 
+    company_name = models.CharField(max_length=255, null=False, blank=False)
+
     def __str__(self):
         user = CustomUser.objects.get(pk=self.user_id)
         return f'{user.id} - {user.username} - {user.email} - {self.id}'
