@@ -34,6 +34,9 @@ INSTALLED_APPS = [
     # 予約システム
     'booking.apps.BookingConfig',
 
+    # アカウント
+    'member.apps.MemberConfig',
+
     # 認証システム
     'django.contrib.sites',
     'allauth',
