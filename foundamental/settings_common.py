@@ -138,6 +138,11 @@ STATICFILES_DIRS = (
 # 認証に使うモデルを指定
 AUTH_USER_MODEL = 'member.CustomUser'
 
+ACCOUNT_FORMS = {
+    'counselor_signup': 'member.forms.CounselorSignUpForm',
+    'entrepreneur_signup': 'member.forms.EntrepreneurSignUpForm',
+}
+
 # signupformからの情報をcustomusermodelに保存するためのアダプタを指定
 ACCOUNT_ADAPTER = 'member.adapter.AccountAdapter'
 
