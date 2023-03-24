@@ -14,10 +14,10 @@ class CustomUser(AbstractUser):
     class Meta(AbstractUser.Meta):
         db_table = 'custom_user'
 
-    userType = models.CharField(max_length=10)
+    userType = models.CharField(max_length=10, null=False, blank=False)
 
     def __str__(self):
-        return f'{self.username} - {self.usertype}'
+        return f'{self.username} - {self.userType}'
 
 
 class UserDetailCounselor(models.Model):

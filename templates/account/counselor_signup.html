@@ -18,8 +18,6 @@
                 {% bootstrap_form form %}
             </div>
 
-            <input type="hidden" name="userType" value="100" />
-
             {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
             {% endif %}

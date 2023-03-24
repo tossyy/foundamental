@@ -6,21 +6,22 @@ class AccountAdapter(DefaultAccountAdapter):
 
     def save_user(self, request, user, form, commit=True):
         user = super().save_user(request, user, form, commit=False)
-        user.userType = form.cleaned_data.get('userType')
+
+        user.userType = request.POST.get('userType')
 
         # ユーザーIDを取得するために一旦保存する
         user.save()
 
-        if user.userType == UserType.COUNSELOR:
+        if user.userType == UserType.COUNSELOR.value:
             # カウンセラーユーザー
             counselor = UserDetailCounselor()
             counselor.user_id = user.id
-            counselor.age = form.cleaned_data.get('age')
+            counselor.age = request.POST.get('age')
             counselor.save()
 
         else:
             # 起業家ユーザー
             entrepreneur = UserDetailEntrepreneur()
             entrepreneur.user_id = user.id
-            entrepreneur.companyName = form.cleaned_data.get('companyName')
+            entrepreneur.companyName = request.POST.get('companyName')
             entrepreneur.save()
