@@ -7,9 +7,6 @@ from .models import CustomUser, UserType
 
 
 class CounselorSignUpForm(SignupForm):
-    userType = forms.ChoiceField(label='ユーザータイプ',
-                                 choices=UserType.choices,
-                                 required=True)
     age = forms.IntegerField(label='年齢')
 
     class Meta:
@@ -17,9 +14,6 @@ class CounselorSignUpForm(SignupForm):
 
 
 class EntrepreneurSignUpForm(SignupForm):
-    userType = forms.ChoiceField(label='ユーザータイプ',
-                                 choices=UserType.choices,
-                                 required=True)
     companyName = forms.CharField(label='会社名',
                                   max_length=255,
                                   required=True)
