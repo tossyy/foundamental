@@ -141,6 +141,7 @@ AUTH_USER_MODEL = 'member.CustomUser'
 ACCOUNT_FORMS = {
     'counselor_signup': 'member.forms.CounselorSignUpForm',
     'entrepreneur_signup': 'member.forms.EntrepreneurSignUpForm',
+    'admin_signup': 'member.forms.AdminSignUpForm',
 }
 
 # signupformからの情報をcustomusermodelに保存するためのアダプタを指定

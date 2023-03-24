@@ -20,3 +20,8 @@ class EntrepreneurSignUpForm(SignupForm):
 
     class Meta:
         model = CustomUser
+
+
+class AdminSignUpForm(SignupForm):
+    class Meta:
+        model = CustomUser

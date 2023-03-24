@@ -11,3 +11,9 @@ class CounselorSignUpView(generic.FormView):
 class EntrepreneurSignUpView(generic.FormView):
     template_name = 'account/entrepreneur_signup.html'
     form_class = EntrepreneurSignUpForm
+
+
+class AdminSignUpView(generic.FormView):
+    template_name = 'account/admin_signup.html'
+    form_class = AdminSignUpForm
+

@@ -19,9 +19,18 @@ class AccountAdapter(DefaultAccountAdapter):
             counselor.age = request.POST.get('age')
             counselor.save()
 
-        else:
+        elif user.userType == UserType.ENTREPRENEUR.value:
             # 起業家ユーザー
             entrepreneur = UserDetailEntrepreneur()
             entrepreneur.user_id = user.id
             entrepreneur.companyName = request.POST.get('companyName')
             entrepreneur.save()
+
+        elif user.userType == UserType.ADMIN.value:
+            # 管理者ユーザー
+            admin = UserDetailAdmin()
+            admin.user_id = user.id
+            admin.save()
+
+        else:
+            raise Exception
