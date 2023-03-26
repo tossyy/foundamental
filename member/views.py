@@ -3,6 +3,10 @@ from django.views import generic
 from .forms import *
 
 
+class RegisterView(generic.TemplateView):
+    template_name = 'register.html'
+
+
 class CounselorSignUpView(generic.FormView):
     template_name = 'account/counselor_signup.html'
     form_class = CounselorSignUpForm

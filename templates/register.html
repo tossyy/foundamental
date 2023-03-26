@@ -2,17 +2,18 @@
 
 {% load static %}
 
-{% block title %}サインアップ | Foundamental{% endblock %}
+{% block title %}ユーザー登録 | Foundamental{% endblock %}
 
 {% block contents %}
 <div class="container">
     <div class="row">
-        <h1>サインアップ</h1>
+        <h1>ユーザー登録</h1>
     </div>
     <div class="row">
         <ul>
             <li><a href="{% url 'member:counselor_signup' %}">カウンセラー</a></li>
             <li><a href="{% url 'member:entrepreneur_signup' %}">起業家</a></li>
+            <li><a href="{% url 'member:admin_signup' %}">管理者</a></li>
         </ul>
     </div>
 </div>

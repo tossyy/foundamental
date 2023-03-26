@@ -1,9 +1,8 @@
 from django import forms
 
 from allauth.account.forms import SignupForm
-from allauth.account.adapter import get_adapter
 
-from .models import CustomUser, UserType
+from .models import CustomUser
 
 
 class CounselorSignUpForm(SignupForm):

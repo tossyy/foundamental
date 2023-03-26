@@ -33,4 +33,5 @@ class AccountAdapter(DefaultAccountAdapter):
             admin.save()
 
         else:
+            print('エラー発生')
             raise Exception
