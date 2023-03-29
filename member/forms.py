@@ -1,16 +1,7 @@
-from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
 from django import forms
-from django.contrib.auth.forms import UserChangeForm, UserCreationForm
-from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.forms import UserCreationForm
 
-from .models import CustomUser
-
-
-class CustomUserChangeForm(UserChangeForm):
-    class Meta:
-        model = CustomUser
-        fields = '__all__'
+from .models import *
 
 
 class CounselorCreationForm(UserCreationForm):
@@ -31,28 +22,7 @@ class EntrepreneurCreationForm(UserCreationForm):
         fields = ['username', 'email', 'companyName', 'password1', 'password2']
 
 
-class AdminSignUpForm(UserCreationForm):
+class AdminCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-
-
-class CounselorAdmin(UserAdmin):
-    fieldsets = (
-        (None, {'fields': ('email', 'password')}),
-        (_('Personal info'), {'fields': ('first_name', 'last_name')}),
-        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
-                                       'groups', 'user_permissions')}),
-        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
-    )
-    add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2'),
-        }),
-    )
-    form = CustomUserChangeForm
-    add_form = CounselorCreationForm
-    list_display = ('email', 'first_name', 'last_name', 'is_staff')
-    list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
-    search_fields = ('email', 'first_name', 'last_name')
-    ordering = ('email',)
+        fields = ['username', 'email', 'password1', 'password2']

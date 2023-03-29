@@ -49,12 +49,12 @@
                       <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ user.username }}</a>
                       <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="nav-link" href="#">Setting</a></li>
-                        <li><a class="nav-link" href="{% url 'account_logout' %}">Logout</a></li>
+                        <li><a class="nav-link" href="{% url 'member:logout' %}">Logout</a></li>
                       </ul>
                     </li>
                   {% else %}
                     <li class="nav-item me-auto">
-                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                        <a class="nav-link" href="{% url 'member:login' %}?next={% url 'dashboard:index' %}">Login</a>
                     </li>
                   {% endif %}
                 </ul>
