@@ -19,7 +19,8 @@ from django.views import generic
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('survey/', include('survey.urls')),
     path('booking/', include('booking.urls')),
-    path('', include('dashboard.urls')),
     path('member/', include('member.urls')),
+    path('', include('dashboard.urls')),
 ]

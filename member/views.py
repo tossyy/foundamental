@@ -2,12 +2,20 @@ from django.views import generic
 from django.urls import reverse_lazy
 
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 from .forms import *
 
 
-class RegisterView(generic.TemplateView):
+class OnlyAdminMixin(UserPassesTestMixin):
+    raise_exception = True
+
+    def test_func(self):
+        return self.request.user.userType == 'AD'
+
+
+class RegisterView(LoginRequiredMixin, OnlyAdminMixin, generic.TemplateView):
     template_name = 'register.html'
 
 
@@ -19,7 +27,7 @@ class CustomLogoutView(LogoutView):
     template_name = 'account/logout.html'
 
 
-class CounselorCreateView(generic.CreateView):
+class CounselorCreateView(LoginRequiredMixin, OnlyAdminMixin, generic.CreateView):
     template_name = 'account/counselor_signup.html'
     form_class = CounselorCreationForm
     success_url = reverse_lazy('member:register')
@@ -39,7 +47,7 @@ class CounselorCreateView(generic.CreateView):
         return super().form_valid(form)
 
 
-class EntrepreneurCreateView(generic.CreateView):
+class EntrepreneurCreateView(LoginRequiredMixin, OnlyAdminMixin, generic.CreateView):
     template_name = 'account/entrepreneur_signup.html'
     form_class = EntrepreneurCreationForm
     success_url = reverse_lazy('member:register')
@@ -59,7 +67,7 @@ class EntrepreneurCreateView(generic.CreateView):
         return super().form_valid(form)
 
 
-class AdminCreateView(generic.FormView):
+class AdminCreateView(LoginRequiredMixin, OnlyAdminMixin, generic.CreateView):
     template_name = 'account/admin_signup.html'
     form_class = AdminCreationForm
     success_url = reverse_lazy('member:register')

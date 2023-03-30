@@ -31,6 +31,9 @@ INSTALLED_APPS = [
     # ダッシュボード
     'dashboard.apps.DashboardConfig',
 
+    # サーベイ
+    'survey.apps.SurveyConfig',
+
     # 予約システム
     'booking.apps.BookingConfig',
 
