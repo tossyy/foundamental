@@ -5,9 +5,11 @@ from .models import *
 
 class SurveyCreateForm(forms.ModelForm):
 
-    answer1 = forms.IntegerField(label='質問１')
-    answer2 = forms.IntegerField(label='質問２')
-
     class Meta:
         model = Survey
         fields = ['answer1', 'answer2']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
