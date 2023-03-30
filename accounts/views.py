@@ -30,7 +30,7 @@ class CustomLogoutView(LogoutView):
 class CounselorCreateView(LoginRequiredMixin, OnlyAdminMixin, generic.CreateView):
     template_name = 'account/counselor_signup.html'
     form_class = CounselorCreationForm
-    success_url = reverse_lazy('member:register')
+    success_url = reverse_lazy('accounts:register')
 
     def form_valid(self, form):
         # カスタムユーザー
@@ -50,7 +50,7 @@ class CounselorCreateView(LoginRequiredMixin, OnlyAdminMixin, generic.CreateView
 class EntrepreneurCreateView(LoginRequiredMixin, OnlyAdminMixin, generic.CreateView):
     template_name = 'account/entrepreneur_signup.html'
     form_class = EntrepreneurCreationForm
-    success_url = reverse_lazy('member:register')
+    success_url = reverse_lazy('accounts:register')
 
     def form_valid(self, form):
         # カスタムユーザー
@@ -70,7 +70,7 @@ class EntrepreneurCreateView(LoginRequiredMixin, OnlyAdminMixin, generic.CreateV
 class AdminCreateView(LoginRequiredMixin, OnlyAdminMixin, generic.CreateView):
     template_name = 'account/admin_signup.html'
     form_class = AdminCreationForm
-    success_url = reverse_lazy('member:register')
+    success_url = reverse_lazy('accounts:register')
 
     def form_valid(self, form):
         # カスタムユーザー

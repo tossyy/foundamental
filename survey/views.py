@@ -14,6 +14,7 @@ class OnlyEntrepreneurMixin(UserPassesTestMixin):
         return self.request.user.userType == 'EN'
 
 
-class AnswerView(LoginRequiredMixin, OnlyEntrepreneurMixin, generic.FormView):
-    template_name = 'answer.html'
+class SurveyCreateView(LoginRequiredMixin, OnlyEntrepreneurMixin, generic.FormView):
+    template_name = 'survey.html'
+    form_class = SurveyCreateForm
     success_url = reverse_lazy('dashboard:index')

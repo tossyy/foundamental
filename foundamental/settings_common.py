@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'booking.apps.BookingConfig',
 
     # アカウント
-    'member.apps.MemberConfig',
+    'accounts.apps.AccountsConfig',
 
     # Bootstrap5
     'django_bootstrap5',
@@ -134,4 +134,4 @@ STATICFILES_DIRS = (
 )
 
 # 認証に使うモデルを指定
-AUTH_USER_MODEL = 'member.CustomUser'
+AUTH_USER_MODEL = 'accounts.CustomUser'

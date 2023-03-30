@@ -32,14 +32,14 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'survey:answer' %}">Survey</a>
+                    <a class="nav-link" href="{% url 'survey:survey' %}">Survey</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Booking</a>
                   </li>
                   {% if user.userType == 'AD' %}
                     <li class="nav-item">
-                      <a class="nav-link" href="{% url 'member:register' %}">Register</a>
+                      <a class="nav-link" href="{% url 'accounts:register' %}">Register</a>
                     </li>
                   {% endif %}
                 </ul>
@@ -49,12 +49,12 @@
                       <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ user.username }}</a>
                       <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="nav-link" href="#">Setting</a></li>
-                        <li><a class="nav-link" href="{% url 'member:logout' %}">Logout</a></li>
+                        <li><a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a></li>
                       </ul>
                     </li>
                   {% else %}
                     <li class="nav-item me-auto">
-                        <a class="nav-link" href="{% url 'member:login' %}?next={% url 'dashboard:index' %}">Login</a>
+                        <a class="nav-link" href="{% url 'accounts:login' %}?next={% url 'dashboard:index' %}">Login</a>
                     </li>
                   {% endif %}
                 </ul>
