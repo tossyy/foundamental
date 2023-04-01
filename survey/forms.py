@@ -7,7 +7,7 @@ class SurveyCreateForm(forms.ModelForm):
 
     class Meta:
         model = Survey
-        fields = ['answer1', 'answer2']
+        exclude = ('user', 'created_at',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

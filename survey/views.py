@@ -18,3 +18,10 @@ class SurveyCreateView(LoginRequiredMixin, OnlyEntrepreneurMixin, generic.FormVi
     template_name = 'survey.html'
     form_class = SurveyCreateForm
     success_url = reverse_lazy('dashboard:index')
+
+    def form_valid(self, form):
+        survey = form.save(commit=False)
+        survey.user = self.request.user
+        survey.save()
+        
+        return super().form_valid(form)
