@@ -9,7 +9,7 @@ class CounselorCreationForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'age', 'password1', 'password2']
+        fields = ['username', 'email', 'age', 'password1', 'password2', ]
 
 
 class EntrepreneurCreationForm(UserCreationForm):
@@ -17,12 +17,18 @@ class EntrepreneurCreationForm(UserCreationForm):
                                   max_length=255,
                                   required=True)
 
+    counselor = forms.ChoiceField()
+
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'companyName', 'password1', 'password2']
+        fields = ['username', 'email', 'companyName', 'counselor', 'password1', 'password2', ]
+
+    def __init__(self, counselors=None, *args, **kwargs):
+        self.base_fields["counselor"].choices = counselors
+        super().__init__(*args, **kwargs)
 
 
 class AdminCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2', ]

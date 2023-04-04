@@ -62,9 +62,16 @@ class EntrepreneurCreateView(LoginRequiredMixin, OnlyAdminMixin, generic.CreateV
         entrepreneur = UserDetailEntrepreneur()
         entrepreneur.user_id = user.id
         entrepreneur.companyName = form.cleaned_data['companyName']
+        entrepreneur.counselor = CustomUser.objects.get(id=form.cleaned_data['counselor'])
         entrepreneur.save()
 
         return super().form_valid(form)
+
+    def get_form_kwargs(self, *args, **kwargs):
+        kwgs = super().get_form_kwargs(*args, **kwargs)
+        counselor_choice = CustomUser.objects.filter(userType='CO')
+        kwgs["counselors"] = [(i.id, i.username) for i in counselor_choice]
+        return kwgs
 
 
 class AdminCreateView(LoginRequiredMixin, OnlyAdminMixin, generic.CreateView):

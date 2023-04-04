@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}予約可能とした日時 | Foundamental{% endblock %}
+
+{% block contents %}
+<div class="container">
+    <div class="row">
+        <h1>予約可能とした日時</h1>
+    </div>
+    <div class="row mb-3">
+        <ul class="list-group">
+            {% for schedule in schedule_list %}
+                <li class="list-group-item d-flex justify-content-between">
+                    <p>{{ schedule.get_timerange }}</p>
+                    <a class="btn btn-danger" href="{% url 'booking:schedule-delete' schedule.pk %}">削除</a>
+                </li>
+            {% empty %}
+                <p>予約可能とした日時はありません。</p>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="row">
+        <a class="btn btn-primary" href="{% url 'booking:schedule-create' %}">新規作成</a>
+    </div>
+</div>
+{% endblock %}

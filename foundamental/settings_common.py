@@ -42,6 +42,9 @@ INSTALLED_APPS = [
 
     # Bootstrap5
     'django_bootstrap5',
+
+    # CSSクラス追加ツール
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

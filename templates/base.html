@@ -12,8 +12,15 @@
         <!-- Reset CSS -->
         <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
 
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
         <!-- Bootstrap5 CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <!-- Date time picker -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" integrity="sha512-bYPO5jmStZ9WI2602V2zaivdAnbAhtfzmxnEGh9RwtlI00I9s8ulGe4oBa5XxiC6tCITJH/QG70jswBhbLkxPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Core CSS -->
         <link rel="stylesheet" href="{% static 'css/core.css' %}">
@@ -34,12 +41,17 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'survey:survey' %}">Survey</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Booking</a>
-                  </li>
                   {% if user.userType == 'AD' %}
                     <li class="nav-item">
                       <a class="nav-link" href="{% url 'accounts:register' %}">Register</a>
+                    </li>
+                  {% elif user.userType == 'CO' %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'booking:schedule-list' %}">Schedule List</a>
+                    </li>
+                  {% elif user.userType == 'EN' %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'booking:booking' %}">Booking</a>
                     </li>
                   {% endif %}
                 </ul>
@@ -64,5 +76,6 @@
 
           {% block contents %}{% endblock %}
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+          <script src="{% static 'js/script.js' %}"></script>
     </body>
 </html>

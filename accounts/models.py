@@ -39,6 +39,7 @@ class UserDetailEntrepreneur(models.Model):
                                 on_delete=models.CASCADE)
 
     companyName = models.CharField(verbose_name='会社名', max_length=255, null=False, blank=False)
+    counselor = models.ForeignKey(CustomUser, verbose_name='カウンセラー', null=True, blank=False, on_delete=models.PROTECT)
 
 
 class UserDetailAdmin(models.Model):
